@@ -1,7 +1,8 @@
 // src/components/CurrencyDisplay.js
 import React from "react";
+import "./CurrencyDisplay.css";
 
-function CurrencyDisplay({ currencyCounts }) {
+function CurrencyDisplay({ currencyCounts, handleIncrease, handleDecrease }) {
   const sortedDenominations = Object.keys(currencyCounts)
     .map(Number)
     .sort((a, b) => b - a);
@@ -10,8 +11,17 @@ function CurrencyDisplay({ currencyCounts }) {
     <div className="currency-display">
       {sortedDenominations.map((denom) => (
         <div key={denom} className="currency-item">
-          <span>{denom}円</span>
-          <span>{currencyCounts[denom]}枚</span>
+          <span className="denomination">{denom}円</span>
+          <span className="count">{currencyCounts[denom]}枚</span>
+          <div className="buttons">
+            <button onClick={() => handleIncrease(denom)}>+</button>
+            <button
+              onClick={() => handleDecrease(denom)}
+              disabled={currencyCounts[denom] <= 0}
+            >
+              -
+            </button>
+          </div>
         </div>
       ))}
     </div>

@@ -5,12 +5,13 @@
   padding: 20px;
 }
 
-.main-screen, .result-screen {
+.main-screen,
+.result-screen {
   max-width: 400px;
   margin: 0 auto;
 }
 
-input[type="number"] {
+input[type='number'] {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
@@ -23,17 +24,7 @@ button {
   cursor: pointer;
 }
 
-.currency-display {
-  margin: 20px 0;
-  text-align: left;
-}
-
-.currency-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 0;
-}
-
-.options, .toggle {
+.options,
+.toggle {
   margin: 10px 0;
 }
