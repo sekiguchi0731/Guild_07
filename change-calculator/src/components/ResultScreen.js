@@ -7,13 +7,12 @@ function ResultScreen({
   currencyCounts,
   onBack,
   showBills,
-  setShowBills,
-  calculateCurrency,
+  handleToggleBills,
+  handleIncrease,
+  handleDecrease,
 }) {
   const handleToggle = () => {
-    const newShowBills = !showBills;
-    setShowBills(newShowBills);
-    calculateCurrency(parseInt(amount, 10), newShowBills);
+    handleToggleBills();
   };
 
   return (
@@ -25,7 +24,11 @@ function ResultScreen({
           紙幣を含める
         </label>
       </div>
-      <CurrencyDisplay currencyCounts={currencyCounts} />
+      <CurrencyDisplay
+        currencyCounts={currencyCounts}
+        handleIncrease={handleIncrease}
+        handleDecrease={handleDecrease}
+      />
       <button onClick={onBack}>戻る</button>
     </div>
   );

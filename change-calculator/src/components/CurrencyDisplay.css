@@ -1,0 +1,38 @@
+/* src/components/CurrencyDisplay.css */
+.currency-display {
+  margin: 20px 0;
+  text-align: left;
+}
+
+.currency-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+.denomination {
+  width: 80px;
+}
+
+.count {
+  width: 60px;
+  text-align: right;
+  font-weight: bold;
+}
+
+.buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.buttons button {
+  padding: 2px 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.buttons button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
