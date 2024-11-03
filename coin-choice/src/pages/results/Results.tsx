@@ -1,7 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import CurrencyDisplay from '../../components/currentDisplay';
-import './index.css';
 
 function Results() {
   const location = useLocation();
@@ -38,17 +37,23 @@ function Results() {
   const [currencyCounts, setCurrencyCounts] = useState(initialDenominations);
 
   const handleIncrease = (denom: number) => {
-    setCurrencyCounts((prevCounts) => ({
-      ...prevCounts,
-      [denom]: prevCounts[denom] + 1,
-    }));
+    setCurrencyCounts((prevCounts) => {
+      const newCount = (prevCounts[denom] || 0) + 1;
+      return {
+        ...prevCounts,
+        [denom]: newCount,
+      };
+    });
   };
 
   const handleDecrease = (denom: number) => {
-    setCurrencyCounts((prevCounts) => ({
-      ...prevCounts,
-      [denom]: Math.max(prevCounts[denom] - 1, 0),
-    }));
+    setCurrencyCounts((prevCounts) => {
+      const newCount = Math.max((prevCounts[denom] || 0) - 1, 0);
+      return {
+        ...prevCounts,
+        [denom]: newCount,
+      };
+    });
   };
 
   return (

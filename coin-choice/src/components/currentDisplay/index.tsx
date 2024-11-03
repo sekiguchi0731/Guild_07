@@ -1,4 +1,5 @@
-// import './CurrencyDisplay.css'; // Optional: Add styles for the component
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 
 interface CurrencyDisplayProps {
   currencyCounts: { [key: number]: number };
@@ -11,27 +12,29 @@ function CurrencyDisplay({
   handleIncrease,
   handleDecrease,
 }: CurrencyDisplayProps) {
+  // sortedDenominationsを定義（例として、通貨の種類を配列で定義）
   const sortedDenominations = Object.keys(currencyCounts)
     .map(Number)
     .sort((a, b) => b - a);
 
   return (
     <div className='currency-display'>
-      {sortedDenominations.map((denom) => (
-        <div key={denom} style={{ display: 'flex', alignItems: 'center' }}>
-          <span className='denomination'>{denom}円</span>
-          <span className='count'>{currencyCounts[denom]}枚</span>
-          <div className='buttons'>
-            <button onClick={() => handleIncrease(denom)}>+</button>
-            <button
-              onClick={() => handleDecrease(denom)}
-              disabled={currencyCounts[denom] <= 0}
-            >
-              -
-            </button>
+      {sortedDenominations.map(
+        (
+          denom: number, // 型を明示的に指定
+        ) => (
+          <div key={denom} style={{ display: 'flex', alignItems: 'center' }}>
+            <span className='denomination'>{denom}円</span>
+            <span className='count'>{currencyCounts[denom]}枚</span>
+            <div className='buttons'>
+              <AddBoxIcon onClick={() => handleIncrease(denom)} />
+              <IndeterminateCheckBoxIcon
+                onClick={() => handleDecrease(denom)}
+              />
+            </div>
           </div>
-        </div>
-      ))}
+        ),
+      )}
     </div>
   );
 }

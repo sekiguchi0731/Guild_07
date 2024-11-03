@@ -60,10 +60,12 @@ function Top() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          marginTop: '50px',
+          marginTop: '16vh',
         }}
       >
-        <h1>金額を入力してください</h1>
+        <div style={{ marginBottom: '20px', fontSize: '20px' }}>
+          金額を入力してください
+        </div>
         <input
           type='number'
           value={amount}
