@@ -7,18 +7,11 @@ import "./App.css";
 function App() {
   const [amount, setAmount] = useState("");
   const [currencyCounts, setCurrencyCounts] = useState({});
-  const [showBills, setShowBills] = useState(false);
 
-  // 通貨の種類をshowBillsに基づいて決定
-  const getDenominations = (includeBills) => {
-    return includeBills
-      ? [10000, 5000, 1000, 500, 100, 50, 10, 5, 1]
-      : [500, 100, 50, 10, 5, 1];
-  };
 
   // 通貨の計算関数
-  const calculateCurrency = (value, includeBills, overrideCounts = {}) => {
-    const denominations = getDenominations(includeBills);
+  const calculateCurrency = (value, overrideCounts = {}) => {
+    const denominations = [10000, 5000, 1000, 500, 100, 50, 10, 5, 1];
     let remaining = value;
     const counts = {};
 
@@ -54,7 +47,7 @@ function App() {
       alert("有効な金額を入力してください。");
       return;
     }
-    calculateCurrency(numericAmount, showBills);
+    calculateCurrency(numericAmount);
   };
 
   // 「+」ボタン押下時のハンドラー
@@ -68,7 +61,7 @@ function App() {
     const currentCount = currencyCounts[denom] || 0;
     const newCount = currentCount + 1;
     const newOverrideCounts = { ...currencyCounts, [denom]: newCount };
-    calculateCurrency(numericAmount, showBills, newOverrideCounts);
+    calculateCurrency(numericAmount, newOverrideCounts);
   };
 
   // 「-」ボタン押下時のハンドラー
@@ -89,23 +82,9 @@ function App() {
     } else {
       newOverrideCounts[denom] = newCount;
     }
-    calculateCurrency(numericAmount, showBills, newOverrideCounts);
+    calculateCurrency(numericAmount, newOverrideCounts);
   };
 
-  // 「紙幣を含める」ボタンのハンドラー
-  const handleToggleBills = () => {
-    const newShowBills = !showBills;
-    setShowBills(newShowBills);
-
-    const numericAmount = parseInt(amount, 10);
-    if (isNaN(numericAmount) || numericAmount < 0) {
-      alert("有効な金額を入力してください。");
-      return;
-    }
-
-    // 「紙幣を含める」切り替え時に再計算
-    calculateCurrency(numericAmount, newShowBills, currencyCounts);
-  };
 
   return (
     <div className="App">
@@ -114,16 +93,12 @@ function App() {
           amount={amount}
           setAmount={setAmount}
           onConvert={handleConvert}
-          showBills={showBills}
-          setShowBills={setShowBills}
         />
       ) : (
         <ResultScreen
           amount={amount}
           currencyCounts={currencyCounts}
           onBack={() => setCurrencyCounts({})}
-          showBills={showBills}
-          handleToggleBills={handleToggleBills}
           handleIncrease={handleIncrease}
           handleDecrease={handleDecrease}
         />
