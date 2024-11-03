@@ -1,4 +1,12 @@
 {
   "git.ignoreLimitWarning": true,
-  "cSpell.words": ["camelcase", "tsbuildinfo", "tseslint"]
+  "cSpell.words": [
+    "Avenir",
+    "camelcase",
+    "Casheless",
+    "fontsource",
+    "roboto",
+    "tsbuildinfo",
+    "tseslint"
+  ]
 }
