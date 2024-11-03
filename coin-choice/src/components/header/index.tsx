@@ -64,7 +64,7 @@ function HeaderBar() {
                   backgroundColor: '#D9D9D9',
                 }}
               >
-                Coin-Choice(仮)
+                Casheless
               </Box>
             </Box>
           </Toolbar>

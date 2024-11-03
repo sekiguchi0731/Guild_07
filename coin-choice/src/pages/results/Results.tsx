@@ -1,56 +1,64 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import CurrencyDisplay from '../../components/currentDisplay';
+import './index.css';
 
 function Results() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { amount } = location.state || { amount: 0 }; // Get amount from state
+  const { amount, showBills } = location.state || {
+    amount: 0,
+    showBills: true,
+  };
 
-  // Redirect to Top if amount is not available
+  // Redirect to /top if amount is not available
   useEffect(() => {
     if (!amount) {
-      navigate('/'); // Redirect to Top component
+      navigate('/');
     }
   }, [amount, navigate]);
 
   // Calculate the number of each coin and bill
-  const calculateDenominations = (amount: number) => {
-    const denominations: { [key: string]: number } = {
-      '10000円': 0,
-      '5000円': 0,
-      '2000円': 0,
-      '1000円': 0,
-      '500円': 0,
-      '100円': 0,
-      '50円': 0,
-      '10円': 0,
-      '5円': 0,
-      '1円': 0,
-    };
+  const calculateCurrency = (value: number, includeBills: boolean) => {
+    const denominations = includeBills
+      ? [10000, 5000, 2000, 1000, 500, 100, 50, 10, 5, 1]
+      : [500, 100, 50, 10, 5, 1];
+    let remaining = value;
+    const counts: { [key: number]: number } = {};
 
-    // Calculate the number of each denomination
-    for (const denom of Object.keys(denominations)) {
-      denominations[denom] = Math.floor(
-        amount / parseInt(denom.replace('円', '')),
-      );
-      amount %= parseInt(denom.replace('円', ''));
-    }
+    denominations.forEach((denom) => {
+      counts[denom] = Math.floor(remaining / denom);
+      remaining %= denom;
+    });
 
-    return denominations;
+    return counts;
   };
 
-  const denominations = calculateDenominations(amount);
+  const initialDenominations = calculateCurrency(amount, showBills);
+  const [currencyCounts, setCurrencyCounts] = useState(initialDenominations);
+
+  const handleIncrease = (denom: number) => {
+    setCurrencyCounts((prevCounts) => ({
+      ...prevCounts,
+      [denom]: prevCounts[denom] + 1,
+    }));
+  };
+
+  const handleDecrease = (denom: number) => {
+    setCurrencyCounts((prevCounts) => ({
+      ...prevCounts,
+      [denom]: Math.max(prevCounts[denom] - 1, 0),
+    }));
+  };
 
   return (
     <div>
       <h1>計算結果</h1>
-      <ul>
-        {Object.entries(denominations).map(([denom, count]) => (
-          <li key={denom}>
-            {denom}: {count}枚
-          </li>
-        ))}
-      </ul>
+      <CurrencyDisplay
+        currencyCounts={currencyCounts}
+        handleIncrease={handleIncrease}
+        handleDecrease={handleDecrease}
+      />
       <button onClick={() => navigate('/')}>戻る</button>
     </div>
   );
