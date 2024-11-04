@@ -33,7 +33,7 @@ function HeaderBar() {
             />
             {/* タイトル */}
             <Box component='span' className='header-title'>
-              Casheless
+              Cacheless
             </Box>
           </Box>
         </Toolbar>
