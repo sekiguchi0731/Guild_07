@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import HeaderBar from '../../components/header';
+import './Top.scss'
 
 // 通貨のカウントを表す型を定義
 type CurrencyCounts = {
@@ -54,16 +54,8 @@ function Top() {
 
   return (
     <>
-      <HeaderBar />
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          marginTop: '16vh',
-        }}
-      >
-        <div style={{ marginBottom: '20px', fontSize: '20px' }}>
+      <div className='top-container'>
+        <div className='top input field'>
           金額を入力してください
         </div>
         <input
@@ -71,7 +63,6 @@ function Top() {
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
           placeholder='金額を入力'
-          style={{ marginBottom: '20px' }}
         />
         <button onClick={handleCalculate}>枚数を計算する</button>
       </div>

@@ -1,6 +1,8 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import CurrencyDisplay from '../../components/currentDisplay';
+import './Results.css'
+import HeaderBar from '../../components/header';
 
 function Results() {
   const location = useLocation();
@@ -57,15 +59,18 @@ function Results() {
   };
 
   return (
-    <div>
-      <h1>計算結果</h1>
-      <CurrencyDisplay
-        currencyCounts={currencyCounts}
-        handleIncrease={handleIncrease}
-        handleDecrease={handleDecrease}
-      />
-      <button onClick={() => navigate('/')}>戻る</button>
-    </div>
+    <>
+      <HeaderBar />
+      <div className='results-container'>
+        <h1>計算結果</h1>
+        <CurrencyDisplay
+          currencyCounts={currencyCounts}
+          handleIncrease={handleIncrease}
+          handleDecrease={handleDecrease}
+        />
+        <button onClick={() => navigate('/')}>戻る</button>
+      </div>
+    </>
   );
 }
 

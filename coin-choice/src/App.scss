@@ -1,0 +1,8 @@
+* {
+  display: flex;
+  /* flexの方向、揃え方などを必要に応じて設定 */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
