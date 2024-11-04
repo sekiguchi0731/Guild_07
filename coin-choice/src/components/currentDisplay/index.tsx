@@ -1,15 +1,13 @@
-import AddBoxIcon from '@mui/icons-material/AddBox';
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 
 interface CurrencyDisplayProps {
   currencyCounts: { [key: number]: number };
-  handleIncrease: (denom: number) => void;
   handleDecrease: (denom: number) => void;
+  currentMoney: number; // 計算したい金額
 }
 
 function CurrencyDisplay({
   currencyCounts,
-  handleIncrease,
   handleDecrease,
 }: CurrencyDisplayProps) {
   // sortedDenominationsを定義（例として、通貨の種類を配列で定義）
@@ -27,7 +25,7 @@ function CurrencyDisplay({
             <span className='denomination'>{denom}円</span>
             <span className='count'>{currencyCounts[denom]}枚</span>
             <div className='buttons'>
-              <AddBoxIcon onClick={() => handleIncrease(denom)} />
+              {/* <AddBoxIcon onClick={() => handleIncrease(denom)} /> */}
               <IndeterminateCheckBoxIcon
                 onClick={() => handleDecrease(denom)}
               />
