@@ -1,4 +1,4 @@
-import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
+import './index.scss'
 
 interface CurrencyDisplayProps {
   currencyCounts: { [key: number]: number };
@@ -8,7 +8,6 @@ interface CurrencyDisplayProps {
 
 function CurrencyDisplay({
   currencyCounts,
-  handleDecrease,
 }: CurrencyDisplayProps) {
   // sortedDenominationsを定義（例として、通貨の種類を配列で定義）
   const sortedDenominations = Object.keys(currencyCounts)
@@ -24,12 +23,6 @@ function CurrencyDisplay({
           <div key={denom} style={{ display: 'flex', alignItems: 'center' }}>
             <span className='denomination'>{denom}円</span>
             <span className='count'>{currencyCounts[denom]}枚</span>
-            <div className='buttons'>
-              {/* <AddBoxIcon onClick={() => handleIncrease(denom)} /> */}
-              <IndeterminateCheckBoxIcon
-                onClick={() => handleDecrease(denom)}
-              />
-            </div>
           </div>
         ),
       )}
