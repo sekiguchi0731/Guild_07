@@ -1,19 +1,18 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Layout from './components/layout';
-import Top from './pages/top/Top';
-import Results from './pages/results/Results';
 
-function App() {
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import PrefecturePage from './pages/PrefecturePage';
+import QuizPage from './pages/QuizPage';
+
+const App: React.FC = () => {
   return (
-    <Router>
-      <Layout>
-        <Routes>
-          <Route path='/' element={<Top />} />
-          <Route path='/results' element={<Results />} />
-        </Routes>
-      </Layout>
-    </Router>
+    <Routes>
+      <Route path='/' element={<HomePage />} />
+      <Route path='/:prefecture' element={<PrefecturePage />} />
+      <Route path='/:prefecture/:quizId' element={<QuizPage />} />
+    </Routes>
   );
-}
+};
 
 export default App;
