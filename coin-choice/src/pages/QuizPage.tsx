@@ -1,6 +1,8 @@
+// src/pages/QuizPage.tsx
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { quizzes } from '../data/quizzes';
+import QuizCard from '../components/QuizCard';
 
 const QuizPage: React.FC = () => {
   const { prefecture, quizId } = useParams<{
@@ -8,11 +10,12 @@ const QuizPage: React.FC = () => {
     quizId: string;
   }>();
   const navigate = useNavigate();
-  const [answer, setAnswer] = useState('');
   const [isCorrect, setIsCorrect] = useState(false);
+  const [userAnswer, setUserAnswer] = useState<string | null>(null);
 
-  if (!prefecture) {
-    return <div>クイズが見つかりません</div>
+  // prefectureとquizIdが定義されていることを確認
+  if (!prefecture || !quizId) {
+    return <div>クイズが見つかりません。</div>;
   }
 
   // クイズデータを取得
@@ -22,8 +25,11 @@ const QuizPage: React.FC = () => {
     return <div>クイズが見つかりません。</div>;
   }
 
-  const handleSubmit = () => {
-    if (answer === quizData.answer) {
+  // 回答の評価
+  const handleSubmit = (selectedAnswer: string) => {
+    setUserAnswer(selectedAnswer); // ユーザーの回答をセット
+
+    if (selectedAnswer === quizData.answer) {
       setIsCorrect(true);
 
       // クイズ完了状態を保存
@@ -45,29 +51,60 @@ const QuizPage: React.FC = () => {
 
   if (isCorrect) {
     return (
-      <div>
-        <h2>正解です！</h2>
+      <QuizCard question='正解です！'>
         <img
           src={`/assets/images/${prefecture}-${quizId}-image.png`}
           alt='Prize'
+          className='prize-image'
         />
-        <button onClick={() => navigate(`/${prefecture}`)}>戻る</button>
-      </div>
+        <button
+          onClick={() => navigate(`/${prefecture}`)}
+          className='back-button'
+        >
+          戻る
+        </button>
+      </QuizCard>
     );
   }
 
   return (
-    <div>
-      <h2>クイズ {quizId}</h2>
-      <p>{quizData.question}</p>
-      <input
-        type='text'
-        value={answer}
-        onChange={(e) => setAnswer(e.target.value)}
-        placeholder='回答を入力'
-      />
-      <button onClick={handleSubmit}>回答する</button>
-    </div>
+    <QuizCard question={quizData.question}>
+      {quizData.choices ? (
+        <div className='choices'>
+          {quizData.choices.map((choice) => (
+            <button
+              key={choice}
+              onClick={() => handleSubmit(choice)}
+              className='choice-button'
+            >
+              {choice}
+            </button>
+          ))}
+        </div>
+      ) : (
+        <div className='text-input-section'>
+          <input
+            type='text'
+            value={userAnswer || ''}
+            onChange={(e) => setUserAnswer(e.target.value)}
+            placeholder='回答を入力'
+            className='answer-input'
+          />
+          <button
+            onClick={() => {
+              if (userAnswer && userAnswer.trim() !== '') {
+                handleSubmit(userAnswer.trim());
+              } else {
+                alert('回答を入力してください。');
+              }
+            }}
+            className='submit-button'
+          >
+            回答する
+          </button>
+        </div>
+      )}
+    </QuizCard>
   );
 };
 
