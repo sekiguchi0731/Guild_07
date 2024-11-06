@@ -19,12 +19,22 @@ const Pin: React.FC<PinProps> = ({ top, left, disabled, onClick, count, isComple
         cursor: disabled ? 'not-allowed' : 'pointer',
       }}
     >
-      <button onClick={onClick}>{isCompleted ? '🏆' : '📍'}</button>
+      <button
+        style={{
+          width: '50px', 
+          height: '50px',
+          fontSize: '30px',
+          padding: '5px',
+        }}
+        onClick={onClick}
+      >
+        {isCompleted ? '🏆' : '📍'}
+      </button>
       {count !== undefined && (
         <span
           style={{
             marginLeft: '4px',
-            fontSize: '14px',
+            fontSize: '25px',
             color: 'black',
           }}
         >
