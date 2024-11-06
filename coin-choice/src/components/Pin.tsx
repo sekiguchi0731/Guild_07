@@ -18,7 +18,7 @@ const Pin: React.FC<PinProps> = ({ top, left, disabled, onClick, count }) => {
         cursor: disabled ? 'not-allowed' : 'pointer',
       }}
     >
-      <button disabled={disabled} onClick={onClick}>
+      <button onClick={onClick}>
         📍
       </button>
       {count !== undefined && (
