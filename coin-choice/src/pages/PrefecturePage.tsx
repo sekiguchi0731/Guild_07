@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Map from '../components/Map';
 import { prefectures } from '../data/prefectures';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const PrefecturePage: React.FC = () => {
   const { prefecture } = useParams<{ prefecture: string }>();
@@ -35,7 +36,14 @@ const PrefecturePage: React.FC = () => {
     };
   });
 
-  return <Map imageSrc={`/assets/images/${prefecture}-map.png`} pins={pins} />;
+  return (
+    <>
+      <button onClick={() => navigate(-1)}>
+        <ArrowBackIcon /> 戻る
+      </button>
+      <Map imageSrc={`/assets/images/${prefecture}-map.png`} pins={pins} />
+    </>
+  );
 };
 
 export default PrefecturePage;
