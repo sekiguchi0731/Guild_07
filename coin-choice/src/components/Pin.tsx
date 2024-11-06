@@ -6,9 +6,10 @@ interface PinProps {
   disabled: boolean;
   onClick: () => void;
   count?: number; // クイズ数を表示するためのプロパティを追加
+  isCompleted?: boolean;
 }
 
-const Pin: React.FC<PinProps> = ({ top, left, disabled, onClick, count }) => {
+const Pin: React.FC<PinProps> = ({ top, left, disabled, onClick, count, isCompleted }) => {
   return (
     <div
       style={{
@@ -18,9 +19,7 @@ const Pin: React.FC<PinProps> = ({ top, left, disabled, onClick, count }) => {
         cursor: disabled ? 'not-allowed' : 'pointer',
       }}
     >
-      <button onClick={onClick}>
-        📍
-      </button>
+      <button onClick={onClick}>{isCompleted ? '🏆' : '📍'}</button>
       {count !== undefined && (
         <span
           style={{

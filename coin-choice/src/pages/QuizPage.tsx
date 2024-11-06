@@ -45,28 +45,13 @@ const QuizPage: React.FC = () => {
           JSON.stringify(completedQuizzes),
         );
       }
+
+      // 正解したら賞品ページに遷移
+      navigate(`/${prefecture}/${quizId}/prize`);
     } else {
       alert('不正解です。もう一度お試しください。');
     }
   };
-
-  if (isCorrect) {
-    return (
-      <QuizCard question='正解です！'>
-        <img
-          src={`/assets/images/${prefecture}-${quizId}-image.png`}
-          alt='Prize'
-          className='prize-image'
-        />
-        <button
-          onClick={() => navigate(`/${prefecture}`)}
-          className='back-button'
-        >
-          <ArrowBackIcon /> 戻る
-        </button>
-      </QuizCard>
-    );
-  }
 
   return (
     <>

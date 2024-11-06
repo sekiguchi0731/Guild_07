@@ -27,12 +27,22 @@ const PrefecturePage: React.FC = () => {
   // クイズ数に応じてピンを生成
   const pins = Array.from({ length: selectedPref.quizzes }, (_, index) => {
     const quizId = `q${index + 1}`;
+    const quizKey = `${prefecture}-${quizId}`;
+    const isCompleted = completedQuizzes.includes(quizKey);
+
     return {
       id: quizId,
       top: 30 + index * 10, // ピンの位置は例として上下にずらす
       left: 50,
       disabled: completedQuizzes.includes(`${prefecture}-${quizId}`),
-      onClick: () => navigate(`/${prefecture}/${quizId}`),
+      isCompleted,
+      onClick: () => {
+        if (isCompleted) {
+          navigate(`/${prefecture}/${quizId}/prize`);
+        } else {
+          navigate(`/${prefecture}/${quizId}`);
+        }
+      },
     };
   });
 
