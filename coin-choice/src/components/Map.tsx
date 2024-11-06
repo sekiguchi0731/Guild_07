@@ -10,6 +10,7 @@ interface MapProps {
     disabled: boolean;
     onClick: () => void;
     count?: number; // クイズ数を受け取る
+    isCompleted?: boolean;
   }>;
 }
 
@@ -25,6 +26,7 @@ const Map: React.FC<MapProps> = ({ imageSrc, pins }) => {
           disabled={pin.disabled}
           onClick={pin.onClick}
           count={pin.count} // クイズ数を渡す
+          isCompleted={pin.isCompleted}
         />
       ))}
     </div>
