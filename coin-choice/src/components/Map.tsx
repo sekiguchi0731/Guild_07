@@ -1,5 +1,5 @@
 import React from 'react';
-import Pin from './Pin.tsx';
+import Pin from './Pin';
 
 interface MapProps {
   imageSrc: string;
@@ -9,6 +9,7 @@ interface MapProps {
     left: number;
     disabled: boolean;
     onClick: () => void;
+    count?: number; // クイズ数を受け取る
   }>;
 }
 
@@ -23,6 +24,7 @@ const Map: React.FC<MapProps> = ({ imageSrc, pins }) => {
           left={pin.left}
           disabled={pin.disabled}
           onClick={pin.onClick}
+          count={pin.count} // クイズ数を渡す
         />
       ))}
     </div>
