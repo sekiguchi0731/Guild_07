@@ -18,21 +18,21 @@ export const quizzes: PrefectureQuizzes = {
       question: '東京のシンボルは何ですか？',
       answer: '東京タワー',
       choices: ['東京タワー', 'スカイツリー', '浅草寺'],
-      city: '港区'
+      city: 'Minato-ku'
     },
     {
       id: 'q2',
       question: '東京で一番高い山は？',
       answer: '高尾山',
       choices: ['高尾山', 'スカイツリー', '浅草寺'], // 実際の選択肢を追加
-      city: '八王子市'
+      city: 'Hachoji'
     },
     {
       id: 'q3',
       question: '東京の人口は約何人ですか？',
       answer: '1400万人',
       choices: ['100万人', '1億人', '1400万人'],
-      city: '東京'
+      city: 'tokyo'
       // 選択肢がない場合は入力形式
     },
   ],
