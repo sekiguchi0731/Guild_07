@@ -40,7 +40,7 @@ function HeaderBar() {
                   backgroundColor: '#ffffff',
                 }}
               >
-                Quiz
+                Map-Quiz
               </Box>
             </Box>
           </Toolbar>
