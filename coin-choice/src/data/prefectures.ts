@@ -1,24 +1,25 @@
+// src/data/prefectures.ts
 export interface Prefecture {
   id: string;
-  name: string;
-  top: number;
-  left: number;
+  nameKey: string; // 'name'を'nameKey'に変更
+  latitude: number; // 緯度
+  longitude: number; // 経度
   quizzes: number;
 }
 
 export const prefectures: Prefecture[] = [
   {
     id: 'tokyo',
-    name: '東京',
-    top: 48,
-    left: 57,
+    nameKey: 'prefectures.tokyo.name', // 翻訳キー
+    latitude: 35.6895,
+    longitude: 139.6917,
     quizzes: 3,
   },
   {
     id: 'gumma',
-    name: '群馬',
-    top: 44,
-    left: 54,
+    nameKey: 'prefectures.gumma.name', // 翻訳キー
+    latitude: 36.3911,
+    longitude: 139.0608,
     quizzes: 1,
   },
   // 他の都道府県を追加

@@ -1,0 +1,48 @@
+{
+  "selectLanguage": "Select Language",
+  "quizNotFound": "Quiz not found.",
+  "incorrectAnswer": "Incorrect answer. Please try again.",
+  "enterAnswer": "Enter your answer",
+  "pleaseEnterAnswer": "Please enter an answer.",
+  "submit": "Submit",
+  "prize": "Congratulations!",
+  "back": "Back",
+  "prefectures": {
+    "tokyo": {
+      "name": "Tokyo"
+    },
+    "gumma": {
+      "name": "Gumma"
+    }
+  },
+  "quiz": {
+    "tokyo": {
+      "q1": {
+        "question": "What is the symbol of Tokyo?",
+        "choices": ["Tokyo Tower", "Skytree", "Sensoji Temple"],
+        "answer": "Tokyo Tower",
+        "city": "Minato-ku"
+      },
+      "q2": {
+        "question": "What is the highest mountain in Tokyo?",
+        "choices": ["Mount Takao", "Skytree", "Sensoji Temple"],
+        "answer": "Mount Takao",
+        "city": "Hachioji"
+      },
+      "q3": {
+        "question": "What is the approximate population of Tokyo?",
+        "choices": ["1 million", "10 million", "14 million"],
+        "answer": "14 million",
+        "city": "Tokyo"
+      }
+    },
+    "gumma": {
+      "q1": {
+        "question": "What is Gunma's famous local food?",
+        "choices": ["Yaki Manju", "Yakisoba", "Okonomiyaki"],
+        "answer": "Yaki Manju",
+        "city": "Nakanojo"
+      }
+    }
+  }
+}

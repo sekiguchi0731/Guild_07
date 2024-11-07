@@ -1,10 +1,12 @@
 // src/data/quizzes.ts
 export interface Quiz {
   id: string;
-  question: string;
-  answer: string;
-  choices?: string[]; // 選択肢がある場合は追加
-  city: string;
+  questionKey: string; // 翻訳キー
+  answerKey: string; // 翻訳キー
+  choicesKeys?: string[]; // 翻訳キー
+  cityKey: string; // 翻訳キー
+  latitude: number; // 緯度
+  longitude: number; // 経度
 }
 
 export interface PrefectureQuizzes {
@@ -15,34 +17,58 @@ export const quizzes: PrefectureQuizzes = {
   tokyo: [
     {
       id: 'q1',
-      question: '東京のシンボルは何ですか？',
-      answer: '東京タワー',
-      choices: ['東京タワー', 'スカイツリー', '浅草寺'],
-      city: '港区'
+      questionKey: 'quiz.tokyo.q1.question',
+      answerKey: 'quiz.tokyo.q1.answer',
+      choicesKeys: [
+        'quiz.tokyo.q1.choices.0',
+        'quiz.tokyo.q1.choices.1',
+        'quiz.tokyo.q1.choices.2',
+      ],
+      cityKey: 'quiz.tokyo.q1.city',
+      latitude: 35.6586, // Minato-ku
+      longitude: 139.7454,
     },
     {
       id: 'q2',
-      question: '東京で一番高い山は？',
-      answer: '高尾山',
-      choices: ['高尾山', 'スカイツリー', '浅草寺'], // 実際の選択肢を追加
-      city: '八王子市'
+      questionKey: 'quiz.tokyo.q2.question',
+      answerKey: 'quiz.tokyo.q2.answer',
+      choicesKeys: [
+        'quiz.tokyo.q2.choices.0',
+        'quiz.tokyo.q2.choices.1',
+        'quiz.tokyo.q2.choices.2',
+      ],
+      cityKey: 'quiz.tokyo.q2.city',
+      latitude: 35.655, // Hachioji
+      longitude: 139.325,
     },
     {
       id: 'q3',
-      question: '東京の人口は約何人ですか？',
-      answer: '1400万人',
-      choices: ['100万人', '1億人', '1400万人'],
-      city: '東京'
-      // 選択肢がない場合は入力形式
+      questionKey: 'quiz.tokyo.q3.question',
+      answerKey: 'quiz.tokyo.q3.answer',
+      choicesKeys: [
+        'quiz.tokyo.q3.choices.0',
+        'quiz.tokyo.q3.choices.1',
+        'quiz.tokyo.q3.choices.2',
+      ],
+      cityKey: 'quiz.tokyo.q3.city',
+      latitude: 35.6895, // Tokyo
+      longitude: 139.6917,
+      // 選択肢がない場合は入力形式にすることも可能
     },
   ],
   gumma: [
     {
       id: 'q1',
-      question: '群馬県の名物は何ですか？',
-      answer: '焼きまんじゅう',
-      choices: ['焼きまんじゅう', '焼きそば', 'お好み焼き'],
-      city: 'Nakanojo'
+      questionKey: 'quiz.gumma.q1.question',
+      answerKey: 'quiz.gumma.q1.answer',
+      choicesKeys: [
+        'quiz.gumma.q1.choices.0',
+        'quiz.gumma.q1.choices.1',
+        'quiz.gumma.q1.choices.2',
+      ],
+      cityKey: 'quiz.gumma.q1.city',
+      latitude: 36.2953, // Nakanojo
+      longitude: 138.8841,
     },
   ],
   // 他の都道府県のクイズを追加

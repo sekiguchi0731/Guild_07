@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { quizzes } from '../data/quizzes';
 import QuizCard from '../components/QuizCard';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useTranslation } from 'react-i18next';
 
 const QuizPage: React.FC = () => {
   const { prefecture, quizId } = useParams<{
@@ -11,28 +12,38 @@ const QuizPage: React.FC = () => {
     quizId: string;
   }>();
   const navigate = useNavigate();
-  const [isCorrect, setIsCorrect] = useState(false);
+  const { t } = useTranslation();
   const [userAnswer, setUserAnswer] = useState<string | null>(null);
 
   // prefectureとquizIdが定義されていることを確認
   if (!prefecture || !quizId) {
-    return <div>クイズが見つかりません。</div>;
+    return <div>{t('quizNotFound')}</div>;
   }
 
   // クイズデータを取得
   const quizData = quizzes[prefecture]?.find((quiz) => quiz.id === quizId);
 
   if (!quizData) {
-    return <div>クイズが見つかりません。</div>;
+    return <div>{t('quizNotFound')}</div>;
   }
+
+  // 翻訳キーを生成
+  const questionKey = `quiz.${prefecture}.${quizId}.question`;
+  const choicesKey = `quiz.${prefecture}.${quizId}.choices`;
+  const answerKey = `quiz.${prefecture}.${quizId}.answer`;
+  const cityKey = `quiz.${prefecture}.${quizId}.city`;
+
+  // 質問と選択肢を取得
+  const question = t(questionKey);
+  const choices: string[] = t(choicesKey, { returnObjects: true }) as string[];
+  const correctAnswer = t(answerKey);
+  const city = t(cityKey);
 
   // 回答の評価
   const handleSubmit = (selectedAnswer: string) => {
-    setUserAnswer(selectedAnswer); // ユーザーの回答をセット
+    setUserAnswer(selectedAnswer);
 
-    if (selectedAnswer === quizData.answer) {
-      setIsCorrect(true);
-
+    if (selectedAnswer === correctAnswer) {
       // クイズ完了状態を保存
       const completedQuizzes = JSON.parse(
         localStorage.getItem('completedQuizzes') || '[]',
@@ -49,21 +60,27 @@ const QuizPage: React.FC = () => {
       // 正解したら賞品ページに遷移
       navigate(`/${prefecture}/${quizId}/prize`);
     } else {
-      alert('不正解です。もう一度お試しください。');
+      alert(t('incorrectAnswer'));
     }
   };
 
   return (
     <>
-      <button onClick={() => navigate(-1)}>
-        <ArrowBackIcon /> 戻る
+      <button onClick={() => navigate(-1)} style={{ margin: '20px' }}>
+        <ArrowBackIcon /> {t('back')}
       </button>
-      <QuizCard question={quizData.question}>
-        {quizData.choices ? (
+      <QuizCard question={question}>
+        <p>
+          <strong>{t('quiz')}:</strong> {t(`prefectures.${prefecture}.name`)}
+        </p>
+        <p>
+          <strong>{t('city')}:</strong> {city}
+        </p>
+        {choices.length > 0 ? (
           <div className='choices'>
-            {quizData.choices.map((choice) => (
+            {choices.map((choice, index) => (
               <button
-                key={choice}
+                key={index}
                 onClick={() => handleSubmit(choice)}
                 className='choice-button'
               >
@@ -77,7 +94,7 @@ const QuizPage: React.FC = () => {
               type='text'
               value={userAnswer || ''}
               onChange={(e) => setUserAnswer(e.target.value)}
-              placeholder='回答を入力'
+              placeholder={t('enterAnswer')}
               className='answer-input'
             />
             <button
@@ -85,12 +102,12 @@ const QuizPage: React.FC = () => {
                 if (userAnswer && userAnswer.trim() !== '') {
                   handleSubmit(userAnswer.trim());
                 } else {
-                  alert('回答を入力してください。');
+                  alert(t('pleaseEnterAnswer'));
                 }
               }}
               className='submit-button'
             >
-              回答する
+              {t('submit')}
             </button>
           </div>
         )}
