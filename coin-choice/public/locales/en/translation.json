@@ -1,7 +1,12 @@
 {
-  "welcome": "Welcome",
-  "quiz_not_found": "Quiz not found",
-  "incorrect_answer": "Incorrect answer. Please try again.",
+  "selectLanguage": "Select Language",
+  "quizNotFound": "Quiz not found.",
+  "incorrectAnswer": "Incorrect answer. Please try again.",
+  "enterAnswer": "Enter your answer",
+  "pleaseEnterAnswer": "Please enter an answer.",
+  "submit": "Submit",
+  "prize": "Congratulations!",
+  "back": "Back",
   "quiz": {
     "tokyo": {
       "q1": {
@@ -18,7 +23,7 @@
       },
       "q3": {
         "question": "What is the approximate population of Tokyo?",
-        "choices": ["1 million", "100 million", "14 million"],
+        "choices": ["1 million", "10 million", "14 million"],
         "answer": "14 million",
         "city": "Tokyo"
       }

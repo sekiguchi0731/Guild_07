@@ -13,7 +13,6 @@ const QuizPage: React.FC = () => {
   }>();
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const [isCorrect, setIsCorrect] = useState(false);
   const [userAnswer, setUserAnswer] = useState<string | null>(null);
 
   // prefectureとquizIdが定義されていることを確認
@@ -28,16 +27,21 @@ const QuizPage: React.FC = () => {
     return <div>{t('quizNotFound')}</div>;
   }
 
+  // 翻訳キーを生成
+  const questionKey = `quiz.${prefecture}.${quizId}.question`;
+  const choicesKey = `quiz.${prefecture}.${quizId}.choices`;
+  const answerKey = `quiz.${prefecture}.${quizId}.answer`;
+
+  // 質問と選択肢を取得
+  const question = t(questionKey);
+  const choices: string[] = t(choicesKey, { returnObjects: true }) as string[];
+  const correctAnswer = t(answerKey);
+
   // 回答の評価
   const handleSubmit = (selectedAnswer: string) => {
-    setUserAnswer(selectedAnswer); // ユーザーの回答をセット
+    setUserAnswer(selectedAnswer);
 
-    // 答えを翻訳キーから実際の値に変換
-    const correctAnswer = t(quizData.answer);
-
-    if (selectedAnswer === quizData.answer) {
-      setIsCorrect(true);
-
+    if (selectedAnswer === correctAnswer) {
       // クイズ完了状態を保存
       const completedQuizzes = JSON.parse(
         localStorage.getItem('completedQuizzes') || '[]',
@@ -60,19 +64,19 @@ const QuizPage: React.FC = () => {
 
   return (
     <>
-      <button onClick={() => navigate(-1)}>
-        <ArrowBackIcon /> 戻る
+      <button onClick={() => navigate(-1)} style={{ margin: '20px' }}>
+        <ArrowBackIcon /> {t('back')}
       </button>
-      <QuizCard question={quizData.question}>
-        {quizData.choices ? (
+      <QuizCard question={question}>
+        {choices.length > 0 ? (
           <div className='choices'>
-            {quizData.choices.map((choiceKey) => (
+            {choices.map((choice, index) => (
               <button
-                key={choiceKey}
-                onClick={() => handleSubmit(t(choiceKey))}
+                key={index}
+                onClick={() => handleSubmit(choice)}
                 className='choice-button'
               >
-                {t(choiceKey)}
+                {choice}
               </button>
             ))}
           </div>

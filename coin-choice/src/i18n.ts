@@ -2,20 +2,32 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-import enTranslation from '../public/locales/en/translation.json';
-import jaTranslation from '../public/locales/ja/translation.json';
+// 翻訳ファイルをインポート
+import translationEN from '../public/locales/en/translation.json';
+import translationJP from '../public/locales/ja/translation.json';
 
-i18n.use(initReactI18next).init({
-  resources: {
-    en: { translation: enTranslation },
-    ja: { translation: jaTranslation },
+// リソースの定義
+const resources = {
+  en: {
+    translation: translationEN,
   },
-  lng: 'en', // デフォルトの言語
-  fallbackLng: 'en',
-  debug: true,
-  interpolation: {
-    escapeValue: false,
+  jp: {
+    translation: translationJP,
   },
-});
+};
+
+i18n
+  .use(initReactI18next) // React用のi18nextプラグインを使用
+  .init({
+    resources,
+    lng: 'en', // 初期言語を英語に設定
+    fallbackLng: 'en',
+    interpolation: {
+      escapeValue: false, // ReactはXSS保護を提供するため、エスケープは不要
+    },
+    react: {
+      useSuspense: false, // 必要に応じて変更
+    },
+  });
 
 export default i18n;

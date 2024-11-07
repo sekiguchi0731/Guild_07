@@ -1,7 +1,12 @@
 {
-  "welcome": "ようこそ",
-  "quiz_not_found": "クイズが見つかりません",
-  "incorrect_answer": "不正解です。もう一度お試しください。",
+  "selectLanguage": "言語を選択",
+  "quizNotFound": "クイズが見つかりません。",
+  "incorrectAnswer": "不正解です。もう一度お試しください。",
+  "enterAnswer": "回答を入力",
+  "pleaseEnterAnswer": "回答を入力してください。",
+  "submit": "回答する",
+  "prize": "おめでとうございます！",
+  "back": "戻る",
   "quiz": {
     "tokyo": {
       "q1": {
@@ -14,13 +19,13 @@
         "question": "東京で一番高い山は？",
         "choices": ["高尾山", "スカイツリー", "浅草寺"],
         "answer": "高尾山",
-        "city": "八王子市"
+        "city": "八王子"
       },
       "q3": {
         "question": "東京の人口は約何人ですか？",
-        "choices": ["100万人", "1億人", "1400万人"],
+        "choices": ["100万人", "1000万人", "1400万人"],
         "answer": "1400万人",
-        "city": "東京都"
+        "city": "東京"
       }
     },
     "gumma": {
@@ -28,7 +33,7 @@
         "question": "群馬県の名物は何ですか？",
         "choices": ["焼きまんじゅう", "焼きそば", "お好み焼き"],
         "answer": "焼きまんじゅう",
-        "city": "中之条町"
+        "city": "中之条"
       }
     }
   }
