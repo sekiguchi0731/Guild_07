@@ -20,26 +20,11 @@ const HomePage: React.FC = () => {
     name: pref.name,
     city: pref.name,
     onClick: () => navigate(`/${pref.id}`),
-    count: pref.quizzes, // クイズ数を追加
+    count: pref.quizzes,
   }));
 
   return (
-    <div style={{ display: 'flex' }}>
-      {/* 言語切り替えプルダウン */}
-      <div style={{ position: 'absolute', top: 10, right: 10, zIndex: 1000 }}>
-        <label htmlFor='language-select'>{t('selectLanguage')}: </label>
-        <select
-          id='language-select'
-          onChange={(e) => changeLanguage(e.target.value)}
-          value={i18n.language}
-        >
-          <option value='en'>English</option>
-          <option value='jp'>日本語</option>
-          {/* 他の言語を追加可能 */}
-        </select>
-      </div>
-
-      {/* 地図とピンの表示 */}
+    <div style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
       <Map imageSrc='/assets/images/japan-map.png' pins={pins} />
     </div>
   );
