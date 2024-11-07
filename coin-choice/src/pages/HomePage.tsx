@@ -11,6 +11,8 @@ const HomePage: React.FC = () => {
     top: pref.top,
     left: pref.left,
     disabled: false,
+    name: pref.name,
+    city: pref.name,
     onClick: () => navigate(`/${pref.id}`),
     count: pref.quizzes, // クイズ数を追加
   }));
