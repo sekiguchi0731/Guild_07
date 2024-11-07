@@ -51,7 +51,7 @@ const PrefecturePage: React.FC = () => {
       <button onClick={() => navigate(-1)}>
         <ArrowBackIcon /> 戻る
       </button>
-      <Map imageSrc={`/assets/images/${prefecture}-map.png`} pins={pins} />
+      <Map imageSrc={`/assets/images/${prefecture}-map.svg`} pins={pins} />
     </>
   );
 };
