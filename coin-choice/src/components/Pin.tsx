@@ -8,9 +8,11 @@ interface PinProps {
   onClick: () => void;
   count?: number; // クイズ数を表示するためのプロパティを追加
   isCompleted?: boolean;
+  city: string;
+  name: string;
 }
 
-const Pin: React.FC<PinProps> = ({ id, top, left, disabled, onClick, count, isCompleted }) => {
+const Pin: React.FC<PinProps> = ({ id, top, left, disabled, onClick, count, isCompleted, name }) => {
   return (
     <div
       style={{
@@ -60,7 +62,7 @@ const Pin: React.FC<PinProps> = ({ id, top, left, disabled, onClick, count, isCo
               color: 'black',
             }}
           >
-            {id}
+            {name}
           </span>
         )}
       </div>
