@@ -10,15 +10,15 @@ export const prefectures: Prefecture[] = [
   {
     id: 'tokyo',
     name: '東京',
-    top: 50,
-    left: 60,
+    top: 48,
+    left: 57,
     quizzes: 3,
   },
   {
     id: 'gumma',
     name: '群馬',
-    top: 40,
-    left: 50,
+    top: 44,
+    left: 54,
     quizzes: 1,
   },
   // 他の都道府県を追加
