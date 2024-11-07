@@ -12,10 +12,14 @@ const HomePage: React.FC = () => {
     left: pref.left,
     disabled: false,
     onClick: () => navigate(`/${pref.id}`),
-    count: pref.quizzes, // クイズ数を追加
+    count: pref.quizzes,
   }));
 
-  return <Map imageSrc='/assets/images/japan-map.png' pins={pins} />;
+  return (
+    <div style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
+      <Map imageSrc='/assets/images/japan-map.png' pins={pins} />
+    </div>
+  );
 };
 
 export default HomePage;
