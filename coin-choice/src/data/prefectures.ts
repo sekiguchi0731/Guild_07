@@ -9,14 +9,14 @@ export interface Prefecture {
 export const prefectures: Prefecture[] = [
   {
     id: 'tokyo',
-    name: '東京',
+    name: 'Tokyo',
     top: 48,
     left: 57,
     quizzes: 3,
   },
   {
     id: 'gumma',
-    name: '群馬',
+    name: 'Gumma',
     top: 44,
     left: 54,
     quizzes: 1,

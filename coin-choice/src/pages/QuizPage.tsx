@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { quizzes } from '../data/quizzes';
 import QuizCard from '../components/QuizCard';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useTranslation } from 'react-i18next';
 
 const QuizPage: React.FC = () => {
   const { prefecture, quizId } = useParams<{
@@ -11,24 +12,28 @@ const QuizPage: React.FC = () => {
     quizId: string;
   }>();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [isCorrect, setIsCorrect] = useState(false);
   const [userAnswer, setUserAnswer] = useState<string | null>(null);
 
   // prefectureとquizIdが定義されていることを確認
   if (!prefecture || !quizId) {
-    return <div>クイズが見つかりません。</div>;
+    return <div>{t('quizNotFound')}</div>;
   }
 
   // クイズデータを取得
   const quizData = quizzes[prefecture]?.find((quiz) => quiz.id === quizId);
 
   if (!quizData) {
-    return <div>クイズが見つかりません。</div>;
+    return <div>{t('quizNotFound')}</div>;
   }
 
   // 回答の評価
   const handleSubmit = (selectedAnswer: string) => {
     setUserAnswer(selectedAnswer); // ユーザーの回答をセット
+
+    // 答えを翻訳キーから実際の値に変換
+    const correctAnswer = t(quizData.answer);
 
     if (selectedAnswer === quizData.answer) {
       setIsCorrect(true);
@@ -49,7 +54,7 @@ const QuizPage: React.FC = () => {
       // 正解したら賞品ページに遷移
       navigate(`/${prefecture}/${quizId}/prize`);
     } else {
-      alert('不正解です。もう一度お試しください。');
+      alert(t('incorrectAnswer'));
     }
   };
 
@@ -61,13 +66,13 @@ const QuizPage: React.FC = () => {
       <QuizCard question={quizData.question}>
         {quizData.choices ? (
           <div className='choices'>
-            {quizData.choices.map((choice) => (
+            {quizData.choices.map((choiceKey) => (
               <button
-                key={choice}
-                onClick={() => handleSubmit(choice)}
+                key={choiceKey}
+                onClick={() => handleSubmit(t(choiceKey))}
                 className='choice-button'
               >
-                {choice}
+                {t(choiceKey)}
               </button>
             ))}
           </div>
@@ -77,7 +82,7 @@ const QuizPage: React.FC = () => {
               type='text'
               value={userAnswer || ''}
               onChange={(e) => setUserAnswer(e.target.value)}
-              placeholder='回答を入力'
+              placeholder={t('enterAnswer')}
               className='answer-input'
             />
             <button
@@ -85,12 +90,12 @@ const QuizPage: React.FC = () => {
                 if (userAnswer && userAnswer.trim() !== '') {
                   handleSubmit(userAnswer.trim());
                 } else {
-                  alert('回答を入力してください。');
+                  alert(t('pleaseEnterAnswer'));
                 }
               }}
               className='submit-button'
             >
-              回答する
+              {t('submit')}
             </button>
           </div>
         )}

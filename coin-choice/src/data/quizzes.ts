@@ -15,34 +15,34 @@ export const quizzes: PrefectureQuizzes = {
   tokyo: [
     {
       id: 'q1',
-      question: '東京のシンボルは何ですか？',
-      answer: '東京タワー',
-      choices: ['東京タワー', 'スカイツリー', '浅草寺'],
-      city: 'Minato-ku'
+      question: 'quiz.q1.question', // 翻訳キーに変更
+      answer: 'quiz.q1.answer',
+      choices: ['quiz.q1.choices.0', 'quiz.q1.choices.1', 'quiz.q1.choices.2'], // 翻訳キーに変更
+      city: 'Minato-ku',
     },
     {
       id: 'q2',
-      question: '東京で一番高い山は？',
-      answer: '高尾山',
-      choices: ['高尾山', 'スカイツリー', '浅草寺'], // 実際の選択肢を追加
-      city: 'Hachoji'
+      question: 'quiz.q2.question',
+      answer: 'quiz.q2.answer',
+      choices: ['quiz.q2.choices.0', 'quiz.q2.choices.1', 'quiz.q2.choices.2'],
+      city: 'Hachioji',
     },
     {
       id: 'q3',
-      question: '東京の人口は約何人ですか？',
-      answer: '1400万人',
-      choices: ['100万人', '1億人', '1400万人'],
-      city: 'tokyo'
+      question: 'quiz.q3.question',
+      answer: 'quiz.q3.answer',
+      choices: ['quiz.q3.choices.0', 'quiz.q3.choices.1', 'quiz.q3.choices.2'],
+      city: 'tokyo',
       // 選択肢がない場合は入力形式
     },
   ],
   gumma: [
     {
       id: 'q1',
-      question: '群馬県の名物は何ですか？',
-      answer: '焼きまんじゅう',
-      choices: ['焼きまんじゅう', '焼きそば', 'お好み焼き'],
-      city: 'Nakanojo'
+      question: 'quiz.q1.question',
+      answer: 'quiz.q1.answer',
+      choices: ['quiz.q1.choices.0', 'quiz.q1.choices.1', 'quiz.q1.choices.2'],
+      city: 'Nakanojo',
     },
   ],
   // 他の都道府県のクイズを追加
