@@ -25,7 +25,7 @@ const PrizePage: React.FC = () => {
         <h2>Congrats!</h2>
         <h3>You got the prize of {quizId} in {prefecture}!</h3>
         <img
-          src={`/assets/images/${prefecture}-${quizId}-prize.png`}
+          src={`/assets/images/prizes/${prefecture}-${quizId}-prize.png`}
           alt='Prize'
           className='prize-image'
         />
