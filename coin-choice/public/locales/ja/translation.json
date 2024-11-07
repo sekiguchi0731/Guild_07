@@ -7,6 +7,14 @@
   "submit": "回答する",
   "prize": "おめでとうございます！",
   "back": "戻る",
+  "prefectures": {
+    "tokyo": {
+      "name": "東京"
+    },
+    "gumma": {
+      "name": "群馬"
+    }
+  },
   "quiz": {
     "tokyo": {
       "q1": {

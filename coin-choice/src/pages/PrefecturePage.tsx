@@ -1,14 +1,16 @@
 // src/pages/PrefecturePage.tsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Map from '../components/Map';
 import { prefectures } from '../data/prefectures';
 import { quizzes } from '../data/quizzes';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import DynamicMap from '../components/DynamicMap';
+import { useTranslation } from 'react-i18next';
 
 const PrefecturePage: React.FC = () => {
   const { prefecture } = useParams<{ prefecture: string }>();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [completedQuizzes, setCompletedQuizzes] = useState<string[]>([]);
 
   useEffect(() => {
@@ -22,25 +24,23 @@ const PrefecturePage: React.FC = () => {
   const selectedPref = prefectures.find((pref) => pref.id === prefecture);
 
   if (!selectedPref) {
-    return <div>都道府県が見つかりません。</div>;
+    return <div>{t('prefectureNotFound')}</div>;
   }
 
   // Retrieve quizzes for the selected prefecture
   const prefectureQuizzes = quizzes[prefecture || ''] || [];
 
-  // Generate pins based on the quizzes for the prefecture
-  const pins = prefectureQuizzes.map((quiz, index) => {
-    const quizId = `q${index + 1}`;
+  // Generate quiz data for the map
+  const mapQuizzes = prefectureQuizzes.map((quiz) => {
+    const quizId = quiz.id;
     const quizKey = `${prefecture}-${quizId}`;
     const isCompleted = completedQuizzes.includes(quizKey);
 
     return {
-      id: quiz.id,
-      city: quiz.city, // Add city information for each pin
-      name: quiz.city,
-      top: 30 + index * 10, // Adjust position as needed
-      left: 50, // Adjust position as needed
-      disabled: isCompleted,
+      id: quizId,
+      cityKey: quiz.cityKey,
+      latitude: quiz.latitude,
+      longitude: quiz.longitude,
       isCompleted,
       onClick: () => {
         if (isCompleted) {
@@ -54,10 +54,15 @@ const PrefecturePage: React.FC = () => {
 
   return (
     <>
-      <button onClick={() => navigate(-1)}>
-        <ArrowBackIcon /> 戻る
+      <button onClick={() => navigate(-1)} style={{ margin: '20px' }}>
+        <ArrowBackIcon /> {t('back')}
       </button>
-      <Map imageSrc={`/assets/images/${prefecture}-map.svg`} pins={pins} />
+      <DynamicMap
+        center={[selectedPref.latitude, selectedPref.longitude]}
+        zoom={12}
+        quizzes={mapQuizzes}
+        prefectureName={t(`prefectures.${prefecture}.name`)}
+      />
     </>
   );
 };

@@ -31,11 +31,13 @@ const QuizPage: React.FC = () => {
   const questionKey = `quiz.${prefecture}.${quizId}.question`;
   const choicesKey = `quiz.${prefecture}.${quizId}.choices`;
   const answerKey = `quiz.${prefecture}.${quizId}.answer`;
+  const cityKey = `quiz.${prefecture}.${quizId}.city`;
 
   // 質問と選択肢を取得
   const question = t(questionKey);
   const choices: string[] = t(choicesKey, { returnObjects: true }) as string[];
   const correctAnswer = t(answerKey);
+  const city = t(cityKey);
 
   // 回答の評価
   const handleSubmit = (selectedAnswer: string) => {
@@ -68,6 +70,12 @@ const QuizPage: React.FC = () => {
         <ArrowBackIcon /> {t('back')}
       </button>
       <QuizCard question={question}>
+        <p>
+          <strong>{t('quiz')}:</strong> {t(`prefectures.${prefecture}.name`)}
+        </p>
+        <p>
+          <strong>{t('city')}:</strong> {city}
+        </p>
         {choices.length > 0 ? (
           <div className='choices'>
             {choices.map((choice, index) => (
