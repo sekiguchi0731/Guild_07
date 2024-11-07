@@ -2,15 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Map from '../components/Map';
 import { prefectures } from '../data/prefectures';
-import { useTranslation } from 'react-i18next';
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation();
-
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
-  };
 
   const pins = prefectures.map((pref) => ({
     id: pref.id,
