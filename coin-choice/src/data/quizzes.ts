@@ -25,8 +25,8 @@ export const quizzes: PrefectureQuizzes = {
         'quiz.tokyo.q1.choices.2',
       ],
       cityKey: 'quiz.tokyo.q1.city',
-      latitude: 35.6586, // Minato-ku
-      longitude: 139.7454,
+      latitude: 35.7156362049573, // Taito-ku
+      longitude: 139.79648363862702,
     },
     {
       id: 'q2',
