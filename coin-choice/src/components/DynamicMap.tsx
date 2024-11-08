@@ -27,7 +27,7 @@ const DynamicMap: React.FC<DynamicMapProps> = ({
   const currentLanguage = i18n.language;
 
   // Mapboxアクセストークン
-  const MAPBOX_ACCESS_TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
+  const MAPBOX_ACCESS_TOKEN = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
   
   // 言語ごとのMapboxスタイルURL
   const mapboxStyles: { [key: string]: string } = {
