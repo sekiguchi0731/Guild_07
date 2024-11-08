@@ -70,12 +70,12 @@ const QuizPage: React.FC = () => {
         <ArrowBackIcon /> {t('back')}
       </button>
       <QuizCard question={question}>
-        <p>
+        {/* <p>
           <strong>{t('quiz')}:</strong> {t(`prefectures.${prefecture}.name`)}
         </p>
         <p>
           <strong>{t('city')}:</strong> {city}
-        </p>
+        </p> */}
         {choices.length > 0 ? (
           <div className='choices'>
             {choices.map((choice, index) => (
