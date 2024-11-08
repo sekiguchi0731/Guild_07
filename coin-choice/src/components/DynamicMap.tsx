@@ -27,6 +27,7 @@ const DynamicMap: React.FC<DynamicMapProps> = ({
   const currentLanguage = i18n.language;
 
   // Mapboxアクセストークン
+  // rootディレクトリに ".env" を作り、VITE_MAPBOX_ACCESS_TOKEN="ここにアクセスtokenをおく" を入れておけば ok です
   const MAPBOX_ACCESS_TOKEN = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
   
   // 言語ごとのMapboxスタイルURL
