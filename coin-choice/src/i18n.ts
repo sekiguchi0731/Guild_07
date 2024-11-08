@@ -4,7 +4,7 @@ import { initReactI18next } from 'react-i18next';
 
 // 翻訳ファイルをインポート
 import translationEN from '../public/locales/en/translation.json';
-import translationJP from '../public/locales/ja/translation.json';
+import translationJP from '../public/locales/jp/translation.json';
 
 // リソースの定義
 const resources = {
