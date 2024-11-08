@@ -3,6 +3,7 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './PrizePage.scss'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useTranslation } from 'react-i18next';
 
 const PrizePage: React.FC = () => {
   const { prefecture, quizId } = useParams<{
@@ -10,6 +11,7 @@ const PrizePage: React.FC = () => {
     quizId: string;
   }>();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   // undefinedチェック
   if (!prefecture || !quizId) {
@@ -19,7 +21,7 @@ const PrizePage: React.FC = () => {
   return (
     <>
       <button onClick={() => navigate(-1)}>
-        <ArrowBackIcon /> 戻る
+        <ArrowBackIcon /> {t('back')}
       </button>
       <div className='prize-container'>
         <h2>Congrats!</h2>
