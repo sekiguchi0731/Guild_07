@@ -6,6 +6,7 @@ import { quizzes } from '../data/quizzes';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import DynamicMap from '../components/DynamicMap';
 import { useTranslation } from 'react-i18next';
+import { Button } from '@mui/material';
 
 const PrefecturePage: React.FC = () => {
   const { prefecture } = useParams<{ prefecture: string }>();
@@ -54,9 +55,9 @@ const PrefecturePage: React.FC = () => {
 
   return (
     <>
-      <button onClick={() => navigate(-1)} style={{ margin: '20px' }}>
+      <Button onClick={() => navigate(-1)} style={{ margin: '20px' }}>
         <ArrowBackIcon /> {t('back')}
-      </button>
+      </Button>
       <DynamicMap
         center={[selectedPref.latitude, selectedPref.longitude]}
         zoom={12}

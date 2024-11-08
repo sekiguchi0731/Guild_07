@@ -1,7 +1,7 @@
 // src/pages/PrizePage.tsx
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import './PrizePage.scss'
+import './PrizePage.scss';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const PrizePage: React.FC = () => {
@@ -18,12 +18,14 @@ const PrizePage: React.FC = () => {
 
   return (
     <>
-      <button onClick={() => navigate(-1)}>
-        <ArrowBackIcon /> 戻る
-      </button>
+      <Button onClick={() => navigate(-1)} style={{ margin: '20px' }}>
+        <ArrowBackIcon /> {t('back')}
+      </Button>
       <div className='prize-container'>
         <h2>Congrats!</h2>
-        <h3>You got the prize of {quizId} in {prefecture}!</h3>
+        <h3>
+          You got the prize of {quizId} in {prefecture}!
+        </h3>
         <img
           src={`/assets/images/prizes/${prefecture}-${quizId}-prize.png`}
           alt='Prize'
