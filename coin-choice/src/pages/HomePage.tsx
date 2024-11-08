@@ -5,7 +5,13 @@ import DynamicMap from '../components/DynamicMap';
 import { prefectures } from '../data/prefectures';
 import { useTranslation } from 'react-i18next';
 import i18n from '../i18n'; // i18nのインポート
-import { Select, MenuItem, FormControl, InputLabel } from '@mui/material'; // MUIのインポート
+import {
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  SelectChangeEvent,
+} from '@mui/material'; // MUIのインポート
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -15,8 +21,8 @@ const HomePage: React.FC = () => {
     i18n.changeLanguage(lng);
   };
 
-  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    changeLanguage(e.target.value);
+  const handleLanguageChange = (event: SelectChangeEvent<string>) => {
+    changeLanguage(event.target.value as string);
   };
 
   const pins = prefectures.map((pref) => ({

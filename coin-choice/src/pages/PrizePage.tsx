@@ -3,6 +3,8 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './PrizePage.scss';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Button from '@mui/material/Button';
+import { t } from 'i18next';
 
 const PrizePage: React.FC = () => {
   const { prefecture, quizId } = useParams<{
