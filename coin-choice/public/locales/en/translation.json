@@ -19,7 +19,11 @@
     "tokyo": {
       "q1": {
         "question": "What scent fills the air around Sensoji Temple's large incense burner?",
-        "choices": ["The sweet smell of cherry blossoms", "A mix of spices and sandalwood", "The salty tang of the nearby Sumida River"],
+        "choices": [
+          "The sweet smell of cherry blossoms",
+          "A mix of spices and sandalwood",
+          "The salty tang of the nearby Sumida River"
+        ],
         "answer": "A mix of spices and sandalwood",
         "city": "Taito-ku"
       },

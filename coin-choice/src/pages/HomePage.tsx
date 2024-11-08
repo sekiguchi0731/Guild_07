@@ -5,6 +5,13 @@ import DynamicMap from '../components/DynamicMap';
 import { prefectures } from '../data/prefectures';
 import { useTranslation } from 'react-i18next';
 import i18n from '../i18n'; // i18nのインポート
+import {
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  SelectChangeEvent,
+} from '@mui/material'; // MUIのインポート
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -14,8 +21,8 @@ const HomePage: React.FC = () => {
     i18n.changeLanguage(lng);
   };
 
-  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    changeLanguage(e.target.value);
+  const handleLanguageChange = (event: SelectChangeEvent<string>) => {
+    changeLanguage(event.target.value as string);
   };
 
   const pins = prefectures.map((pref) => ({
@@ -40,17 +47,27 @@ const HomePage: React.FC = () => {
       }}
     >
       {/* 言語切り替えプルダウン */}
-      <div style={{ position: 'absolute', top: '20px', right: '20px', zIndex: '1000'}}>
-        <label htmlFor='language-select'>{t('selectLanguage')}: </label>
-        <select
-          id='language-select'
-          onChange={handleLanguageChange}
-          value={i18n.language}
-        >
-          <option value='en'>English</option>
-          <option value='jp'>日本語</option>
-          {/* 他の言語を追加可能 */}
-        </select>
+      <div
+        style={{
+          position: 'absolute',
+          top: '20px',
+          right: '20px',
+          zIndex: '1000',
+        }}
+      >
+        <FormControl variant='outlined'>
+          <InputLabel id='language-select-label'>{t('')}</InputLabel>
+          <Select
+            labelId='language-select-label'
+            id='language-select'
+            onChange={handleLanguageChange}
+            value={i18n.language}
+          >
+            <MenuItem value='en'>English</MenuItem>
+            <MenuItem value='jp'>日本語</MenuItem>
+            {/* 他の言語を追加可能 */}
+          </Select>
+        </FormControl>
       </div>
 
       {/* 地図とピンの表示 */}
