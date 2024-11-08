@@ -18,10 +18,10 @@
   "quiz": {
     "tokyo": {
       "q1": {
-        "question": "What is the symbol of Tokyo?",
-        "choices": ["Tokyo Tower", "Skytree", "Sensoji Temple"],
-        "answer": "Tokyo Tower",
-        "city": "Minato-ku"
+        "question": "What scent fills the air around Sensoji Temple's large incense burner?",
+        "choices": ["The sweet smell of cherry blossoms", "A mix of spices and sandalwood", "The salty tang of the nearby Sumida River"],
+        "answer": "A mix of spices and sandalwood",
+        "city": "Taito-ku"
       },
       "q2": {
         "question": "What is the highest mountain in Tokyo?",

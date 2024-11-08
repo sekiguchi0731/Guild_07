@@ -40,7 +40,7 @@ function HeaderBar() {
                   backgroundColor: '#ffffff',
                 }}
               >
-                Quiz
+                Nippon Goshuin Quest
               </Box>
             </Box>
           </Toolbar>
