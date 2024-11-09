@@ -22,5 +22,12 @@ export const prefectures: Prefecture[] = [
     longitude: 139.0608,
     quizzes: 1,
   },
+  {
+    id: 'nagano',
+    nameKey: 'prefectures.nagano.name', // 翻訳キー, 
+    latitude: 36.65966169999807,
+    longitude: 138.4258149700879,
+    quizzes: 2,
+  },
   // 他の都道府県を追加
 ];
