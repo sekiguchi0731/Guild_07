@@ -14,7 +14,7 @@ const QuizPage: React.FC = () => {
   }>();
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const [userAnswer, setUserAnswer] = useState<string | null>(null);
+  const [, setUserAnswer] = useState<string | null>(null);
 
   // prefectureとquizIdが定義されていることを確認
   if (!prefecture || !quizId) {
@@ -28,15 +28,19 @@ const QuizPage: React.FC = () => {
     return <div>{t('quizNotFound')}</div>;
   }
 
+  // 浅草に関連するクイズを取得
+
   // 翻訳キーを生成
   const questionKey = `quiz.${prefecture}.${quizId}.question`;
   const choicesKey = `quiz.${prefecture}.${quizId}.choices`;
   const answerKey = `quiz.${prefecture}.${quizId}.answer`;
+  const cityKey = quizData.cityKey;
 
   // 質問と選択肢を取得
   const question = t(questionKey);
   const choices: string[] = t(choicesKey, { returnObjects: true }) as string[];
   const correctAnswer = t(answerKey);
+  const city = t(cityKey);
 
   // 回答の評価
   const handleSubmit = (selectedAnswer: string) => {
@@ -65,53 +69,21 @@ const QuizPage: React.FC = () => {
 
   return (
     <>
-      <Button onClick={() => navigate(-1)} style={{ margin: '20px' }}>
+      <Button onClick={() => navigate(-1)} style={{ margin: '10px' }}>
         <ArrowBackIcon /> {t('back')}
       </Button>
-      <QuizCard question={question}>
-        {/* <p>
-          <strong>{t('quiz')}:</strong> {t(`prefectures.${prefecture}.name`)}
-        </p>
-        <p>
-          <strong>{t('city')}:</strong> {city}
-        </p> */}
-        {choices.length > 0 ? (
-          <div className='choices'>
-            {choices.map((choice, index) => (
-              <Button
-                key={index}
-                onClick={() => handleSubmit(choice)}
-                className='choice-button'
-                variant='contained'
-              >
-                {choice}
-              </Button>
-            ))}
-          </div>
-        ) : (
-          <div className='text-input-section'>
-            <input
-              type='text'
-              value={userAnswer || ''}
-              onChange={(e) => setUserAnswer(e.target.value)}
-              placeholder={t('enterAnswer')}
-              className='answer-input'
-            />
-            <Button
-              onClick={() => {
-                if (userAnswer && userAnswer.trim() !== '') {
-                  handleSubmit(userAnswer.trim());
-                } else {
-                  alert(t('pleaseEnterAnswer'));
-                }
-              }}
-              className='submit-button'
-              variant='contained'
+      <QuizCard question={question} city={city} correctAnswer={correctAnswer}>
+        <div className='choices'>
+          {choices.map((choice, index) => (
+            <div
+              key={index}
+              onClick={() => handleSubmit(choice)}
+              className='choice-item'
             >
-              {t('submit')}
-            </Button>
-          </div>
-        )}
+              {String.fromCharCode(65 + index)}. {choice}
+            </div>
+          ))}
+        </div>
       </QuizCard>
     </>
   );

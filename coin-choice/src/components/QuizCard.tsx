@@ -1,19 +1,36 @@
 // src/components/QuizCard.tsx
 import React from 'react';
 
-const QuizCard: React.FC<{ question: string; children: React.ReactNode }> = ({
+interface QuizCardProps {
+  question: string;
+  correctAnswer: string;
+  children: React.ReactNode;
+  city: string;
+}
+
+const QuizCard: React.FC<QuizCardProps> = ({
   question,
   children,
+  city,
+  correctAnswer,
 }) => {
+  const handleOptionClick = (option: string) => {
+    if (option === correctAnswer) {
+      console.log(`選択されたオプション: ${option} - 正解です！`);
+    } else {
+      console.log(`選択されたオプション: ${option} - 不正解です。`);
+    }
+  };
+
   return (
     <div
       className='quiz-card'
       style={{
         borderRadius: '40px',
-        width: '300px',
-        height: '70vh',
-        margin: window.innerWidth >= 450 ? '0 auto' : 'auto',
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
+        maxWidth: '500px',
+        height: '80vh',
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+        textAlign: 'center',
         backgroundImage: 'url(../../assets/images/quiz/quizBackground.webp)',
         position: 'relative',
       }}
@@ -42,37 +59,136 @@ const QuizCard: React.FC<{ question: string; children: React.ReactNode }> = ({
           zIndex: 1,
         }}
       />
+      <img
+        src='../../assets/images/quiz/Asakusa.webp'
+        alt='Overlay'
+        style={{
+          position: 'absolute',
+          width: '90%',
+          top: '33%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 1,
+        }}
+      />
+      <div
+        className='title'
+        style={{
+          textAlign: 'center',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          position: 'absolute',
+          top: '5%',
+          fontSize: '24px',
+        }}
+      >
+        {city}
+      </div>
       <div
         className='quiz-container'
         style={{
           display: 'flex',
           alignItems: 'center',
           flexDirection: 'column',
-          marginTop: '30vh',
+          marginTop: '35vh',
           gap: '20px',
         }}
       >
         <h2
           className='quiz-question'
           style={{
-            fontSize: '18px',
-            marginBottom: '20px',
+            width: '90%',
+            display: 'relative',
+            fontSize: '20px',
             color: '#333333',
           }}
         >
           {question}
         </h2>
+
         <div
           className='quiz-content'
           style={{
-            width: '100%',
+            fontSize: '14px',
+            width: '90%',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            textAlign: 'left',
             gap: '50px',
           }}
         >
           {children}
+        </div>
+
+        <div
+          className='choices'
+          style={{
+            width: '100%',
+            display: 'flex',
+            gap: '20px',
+          }}
+        >
+          <button
+            className='choice-button'
+            onClick={() => handleOptionClick('A')}
+            style={{
+              padding: '12px 24px',
+              width: '33%',
+              fontSize: '20px',
+              border: 'none',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              backgroundColor: 'aqua',
+              transition: 'background-color 0.3s ease',
+            }}
+            onMouseOver={(e) =>
+              (e.currentTarget.style.backgroundColor = '#0056b3')
+            }
+            onMouseOut={(e) => (e.currentTarget.style.backgroundColor = 'aqua')}
+          >
+            A
+          </button>
+          <button
+            className='choice-button'
+            onClick={() => handleOptionClick('B')}
+            style={{
+              padding: '12px 24px',
+              width: '33%',
+              fontSize: '20px',
+              border: 'none',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              backgroundColor: 'aqua',
+              transition: 'background-color 0.3s ease',
+            }}
+            onMouseOver={(e) =>
+              (e.currentTarget.style.backgroundColor = '#0056b3')
+            }
+            onMouseOut={(e) => (e.currentTarget.style.backgroundColor = 'aqua')}
+          >
+            B
+          </button>
+          <button
+            className='choice-button'
+            onClick={() => handleOptionClick('C')}
+            style={{
+              padding: '12px 24px',
+              width: '33%',
+              fontSize: '20px',
+              border: 'none',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              backgroundColor: 'aqua',
+              transition: 'background-color 0.3s ease',
+            }}
+            onMouseOver={(e) =>
+              (e.currentTarget.style.backgroundColor = '#0056b3')
+            }
+            onMouseOut={(e) => (e.currentTarget.style.backgroundColor = 'aqua')}
+          >
+            C
+          </button>
         </div>
       </div>
     </div>
