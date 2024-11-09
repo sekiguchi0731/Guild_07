@@ -42,9 +42,9 @@
     },
     "gumma": {
       "q1": {
-        "question": "What is Gunma's famous local food?",
-        "choices": ["Yaki Manju", "Yakisoba", "Okonomiyaki"],
-        "answer": "Yaki Manju",
+        "question": "What's inside a yaki-manju?",
+        "choices": ["Sweet Bean Paste", "Meat and Vegetables", "Nothing"],
+        "answer": "Nothing",
         "city": "Nakanojo"
       }
     }
