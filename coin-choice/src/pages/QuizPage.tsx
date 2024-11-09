@@ -28,14 +28,12 @@ const QuizPage: React.FC = () => {
     return <div>{t('quizNotFound')}</div>;
   }
 
-  // 浅草に関連するクイズを取得
-
   // 翻訳キーを生成
   const questionKey = `quiz.${prefecture}.${quizId}.question`;
   const choicesKey = `quiz.${prefecture}.${quizId}.choices`;
   const answerKey = `quiz.${prefecture}.${quizId}.answer`;
   const cityKey = quizData.cityKey;
-  const imageSrc = `../../public/assets/images/card-photos/${prefecture}-${quizId}.webp`
+  const imageSrc = `../../public/assets/images/card-photos/${prefecture}-${quizId}.webp`;
 
   // 質問と選択肢を取得
   const question = t(questionKey);
@@ -74,11 +72,19 @@ const QuizPage: React.FC = () => {
   };
 
   return (
-    <>
+    <div
+      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+    >
       <Button onClick={() => navigate(-1)} style={{ margin: '10px' }}>
         <ArrowBackIcon /> {t('back')}
       </Button>
-      <QuizCard question={question} city={city} correctAnswer={correctAnswerOption} onSubmit={handleSubmit} imageSrc={imageSrc}>
+      <QuizCard
+        question={question}
+        city={city}
+        correctAnswer={correctAnswerOption}
+        onSubmit={handleSubmit}
+        imageSrc={imageSrc}
+      >
         <div className='choices'>
           {choices.map((choice, index) => (
             <div
@@ -91,7 +97,7 @@ const QuizPage: React.FC = () => {
           ))}
         </div>
       </QuizCard>
-    </>
+    </div>
   );
 };
 
