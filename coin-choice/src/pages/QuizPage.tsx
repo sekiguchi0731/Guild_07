@@ -75,9 +75,11 @@ const QuizPage: React.FC = () => {
     <div
       style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
     >
-      <Button onClick={() => navigate(-1)} style={{ margin: '10px' }}>
-        <ArrowBackIcon /> {t('back')}
-      </Button>
+      <div style={{ alignSelf: 'flex-start', margin: '10px' }}>
+        <Button onClick={() => navigate(-1)}>
+          <ArrowBackIcon /> {t('back')}
+        </Button>
+      </div>
       <QuizCard
         question={question}
         city={city}
