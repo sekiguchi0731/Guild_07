@@ -7,6 +7,7 @@ interface QuizCardProps {
   children: React.ReactNode;
   city: string;
   onSubmit: (selectedAnswer: string) => void;
+  imageSrc: string;
 }
 
 const QuizCard: React.FC<QuizCardProps> = ({
@@ -14,6 +15,7 @@ const QuizCard: React.FC<QuizCardProps> = ({
   children,
   city,
   onSubmit,
+  imageSrc,
 }) => {
   const handleOptionClick = (option: string) => {
     onSubmit(option);
@@ -57,7 +59,7 @@ const QuizCard: React.FC<QuizCardProps> = ({
         }}
       />
       <img
-        src='../../assets/images/quiz/Asakusa.webp'
+        src={imageSrc}
         alt='Overlay'
         style={{
           position: 'absolute',

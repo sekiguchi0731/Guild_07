@@ -35,6 +35,7 @@ const QuizPage: React.FC = () => {
   const choicesKey = `quiz.${prefecture}.${quizId}.choices`;
   const answerKey = `quiz.${prefecture}.${quizId}.answer`;
   const cityKey = quizData.cityKey;
+  const imageSrc = `../../public/assets/images/card-photos/${prefecture}-${quizId}.webp`
 
   // 質問と選択肢を取得
   const question = t(questionKey);
@@ -77,7 +78,7 @@ const QuizPage: React.FC = () => {
       <Button onClick={() => navigate(-1)} style={{ margin: '10px' }}>
         <ArrowBackIcon /> {t('back')}
       </Button>
-      <QuizCard question={question} city={city} correctAnswer={correctAnswerOption} onSubmit={handleSubmit}>
+      <QuizCard question={question} city={city} correctAnswer={correctAnswerOption} onSubmit={handleSubmit} imageSrc={imageSrc}>
         <div className='choices'>
           {choices.map((choice, index) => (
             <div
