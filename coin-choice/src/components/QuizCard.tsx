@@ -6,20 +6,17 @@ interface QuizCardProps {
   correctAnswer: string;
   children: React.ReactNode;
   city: string;
+  onSubmit: (selectedAnswer: string) => void;
 }
 
 const QuizCard: React.FC<QuizCardProps> = ({
   question,
   children,
   city,
-  correctAnswer,
+  onSubmit,
 }) => {
   const handleOptionClick = (option: string) => {
-    if (option === correctAnswer) {
-      console.log(`選択されたオプション: ${option} - 正解です！`);
-    } else {
-      console.log(`選択されたオプション: ${option} - 不正解です。`);
-    }
+    onSubmit(option);
   };
 
   return (

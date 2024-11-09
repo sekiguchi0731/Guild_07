@@ -40,13 +40,18 @@ const QuizPage: React.FC = () => {
   const question = t(questionKey);
   const choices: string[] = t(choicesKey, { returnObjects: true }) as string[];
   const correctAnswer = t(answerKey);
+  const correctAnswerIndex = choices.findIndex(
+    (choice) => choice === correctAnswer,
+  );
+  const correctAnswerOption = ['A', 'B', 'C'][correctAnswerIndex];
   const city = t(cityKey);
 
   // 回答の評価
   const handleSubmit = (selectedAnswer: string) => {
+    console.log(correctAnswerOption);
     setUserAnswer(selectedAnswer);
 
-    if (selectedAnswer === correctAnswer) {
+    if (selectedAnswer === correctAnswerOption) {
       // クイズ完了状態を保存
       const completedQuizzes = JSON.parse(
         localStorage.getItem('completedQuizzes') || '[]',
@@ -72,7 +77,7 @@ const QuizPage: React.FC = () => {
       <Button onClick={() => navigate(-1)} style={{ margin: '10px' }}>
         <ArrowBackIcon /> {t('back')}
       </Button>
-      <QuizCard question={question} city={city} correctAnswer={correctAnswer}>
+      <QuizCard question={question} city={city} correctAnswer={correctAnswerOption} onSubmit={handleSubmit}>
         <div className='choices'>
           {choices.map((choice, index) => (
             <div
