@@ -5,6 +5,7 @@ import { quizzes } from '../data/quizzes';
 import QuizCard from '../components/QuizCard';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useTranslation } from 'react-i18next';
+import Button from '@mui/material/Button';
 
 const QuizPage: React.FC = () => {
   const { prefecture, quizId } = useParams<{
@@ -31,13 +32,11 @@ const QuizPage: React.FC = () => {
   const questionKey = `quiz.${prefecture}.${quizId}.question`;
   const choicesKey = `quiz.${prefecture}.${quizId}.choices`;
   const answerKey = `quiz.${prefecture}.${quizId}.answer`;
-  const cityKey = `quiz.${prefecture}.${quizId}.city`;
 
   // 質問と選択肢を取得
   const question = t(questionKey);
   const choices: string[] = t(choicesKey, { returnObjects: true }) as string[];
   const correctAnswer = t(answerKey);
-  const city = t(cityKey);
 
   // 回答の評価
   const handleSubmit = (selectedAnswer: string) => {
@@ -66,9 +65,9 @@ const QuizPage: React.FC = () => {
 
   return (
     <>
-      <button onClick={() => navigate(-1)} style={{ margin: '20px' }}>
+      <Button onClick={() => navigate(-1)} style={{ margin: '20px' }}>
         <ArrowBackIcon /> {t('back')}
-      </button>
+      </Button>
       <QuizCard question={question}>
         {/* <p>
           <strong>{t('quiz')}:</strong> {t(`prefectures.${prefecture}.name`)}
@@ -79,13 +78,14 @@ const QuizPage: React.FC = () => {
         {choices.length > 0 ? (
           <div className='choices'>
             {choices.map((choice, index) => (
-              <button
+              <Button
                 key={index}
                 onClick={() => handleSubmit(choice)}
                 className='choice-button'
+                variant='contained'
               >
                 {choice}
-              </button>
+              </Button>
             ))}
           </div>
         ) : (
@@ -97,7 +97,7 @@ const QuizPage: React.FC = () => {
               placeholder={t('enterAnswer')}
               className='answer-input'
             />
-            <button
+            <Button
               onClick={() => {
                 if (userAnswer && userAnswer.trim() !== '') {
                   handleSubmit(userAnswer.trim());
@@ -106,9 +106,10 @@ const QuizPage: React.FC = () => {
                 }
               }}
               className='submit-button'
+              variant='contained'
             >
               {t('submit')}
-            </button>
+            </Button>
           </div>
         )}
       </QuizCard>

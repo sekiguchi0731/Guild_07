@@ -1,9 +1,12 @@
 // src/pages/PrizePage.tsx
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import './PrizePage.scss'
+import './PrizePage.scss';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useTranslation } from 'react-i18next';
+import Button from '@mui/material/Button';
+import { t } from 'i18next';
+
 
 const PrizePage: React.FC = () => {
   const { prefecture, quizId } = useParams<{
@@ -20,12 +23,14 @@ const PrizePage: React.FC = () => {
 
   return (
     <>
-      <button onClick={() => navigate(-1)}>
+      <Button onClick={() => navigate(-1)} style={{ margin: '20px' }}>
         <ArrowBackIcon /> {t('back')}
-      </button>
+      </Button>
       <div className='prize-container'>
         <h2>Congrats!</h2>
-        <h3>You got the prize of {quizId} in {prefecture}!</h3>
+        <h3>
+          You got the prize of {quizId} in {prefecture}!
+        </h3>
         <img
           src={`/assets/images/prizes/${prefecture}-${quizId}-prize.png`}
           alt='Prize'
