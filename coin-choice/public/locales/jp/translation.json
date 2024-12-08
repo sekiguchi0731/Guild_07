@@ -1,0 +1,48 @@
+{
+  "selectLanguage": "言語を選択",
+  "quizNotFound": "クイズが見つかりません。",
+  "incorrectAnswer": "不正解です。もう一度お試しください。",
+  "enterAnswer": "回答を入力",
+  "pleaseEnterAnswer": "回答を入力してください。",
+  "submit": "回答する",
+  "prize": "おめでとうございます！",
+  "back": "戻る",
+  "prefectures": {
+    "tokyo": {
+      "name": "東京"
+    },
+    "gumma": {
+      "name": "群馬"
+    }
+  },
+  "quiz": {
+    "tokyo": {
+      "q1": {
+        "question": "浅草寺の煙の匂いはどのようなものでしょう",
+        "choices": ["香水のような匂い", "線香の匂い", "無臭"],
+        "answer": "線香の匂い",
+        "city": "台東区"
+      },
+      "q2": {
+        "question": "東京で一番高い山は？",
+        "choices": ["高尾山", "スカイツリー", "浅草寺"],
+        "answer": "高尾山",
+        "city": "八王子"
+      },
+      "q3": {
+        "question": "東京の人口は約何人ですか？",
+        "choices": ["100万人", "1000万人", "1400万人"],
+        "answer": "1400万人",
+        "city": "東京"
+      }
+    },
+    "gumma": {
+      "q1": {
+        "question": "焼きまんじゅうの中身はなんでしょう",
+        "choices": ["あんこ", "お肉や野菜", "何もない"],
+        "answer": "何もない",
+        "city": "中之条"
+      }
+    }
+  }
+}
